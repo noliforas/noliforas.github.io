@@ -1,4 +1,20 @@
-p {
-    color: rgb(147, 239, 158);
+p,li {
+    color: rgb(208, 207, 197);
+  }
+body {
+    margin: 0 auto;
+    background-color: #e3e1de;
+    padding: 0 20px 20px 20px;
   }
   
+h1 {
+    margin: 0;
+    padding: 20px 0;
+    color: #202020;
+    text-shadow: 3px 3px 1px rgb(51, 50, 50);
+  }
+img {
+    display: block;
+    margin: 0 auto;
+  }
+      
