@@ -44,3 +44,10 @@ fclose($f);
 
 ?>
 
+<div style="background-color: #F0E68C; padding: 10px; text-align: center;">
+  <?php
+    $text = "The quick brown fox jumps over the lazy dog.";
+    $summary = substr($text, 0, 20) . "...";
+    echo $summary;
+  ?>
+</div>
