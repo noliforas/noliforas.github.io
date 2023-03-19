@@ -23,6 +23,21 @@
         border-radius: 10px;
         background-color: #f6f6f2;
       }
+
+      .summary {
+        height: 100px;
+        overflow: hidden;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .summary::after {
+        content: "...";
+        color: blue;
+        position: absolute;
+      }
       h2 {
         text-align: center;
       }
@@ -39,13 +54,10 @@
 
 <body>
   <div class="article-box">
-    <h2>简介</h2>
-    <p>现在是2022年11月23日，我试图创建一个网站来记录我的所思所想</p>
+    <h2><a href="https://noliforas.github.io/articles/article-zero.html"></a>简介</h2>
+    <p class="summary">现在是2022年11月23日，我试图创建一个网站来记录我的所思所想</p>
     <p>我相信时代越是复杂，个体诚实的记录越是可贵</p>
     <p>任何想和我联系的，欢迎发邮件到<a href="mailto:medievalsz@163.com">我的邮箱</a></p>
-    <div class="read-more">
-      <a href="https://noliforas.github.io/articles/article-zero.html">Read More</a>
-    </div>
   </div>
 </body>
 
