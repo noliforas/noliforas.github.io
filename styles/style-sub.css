@@ -1,12 +1,15 @@
 <style>
-a {
-  color: rgb(186, 233, 245); 
-  text-align: center; 
-  font-size: 20px; 
-  font-family: "楷体","楷体_GB2312"; 
-}
-.container {
-  width: 800px; 
-  margin: 0 auto;
-}
+  body {
+    margin:  0 20px;
+    padding:  0 20px;
+    font-family: "楷体", KaiTi, serif;
+    background-color: #f6f6f2;
+  }  
+  h2 {
+    text-align: center;
+  }
+  p {
+    text-align: justify;
+    padding:  0 20px;
+  }
 </style>
