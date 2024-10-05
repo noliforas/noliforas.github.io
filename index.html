@@ -54,6 +54,109 @@
   </head>
 </html>
 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网站导航</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #navbar {
+            float: left;
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        #navbar a {
+            display: block;
+            margin: 10px 0;
+            color: black;
+            text-decoration: none;
+            padding: 5px;
+        }
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        #main-content {
+            margin-left: 220px;
+            padding: 10px;
+        }
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+            display: block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏开始 -->
+    <div id="navbar">
+        <div class="dropdown">
+            <a href="index.html">首页</a>
+            <div class="dropdown-content">
+                <a href="index.html">网站首页</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="geography.html">中国地理</a>
+            <div class="dropdown-content">
+                <a href="provinces.html">省份介绍</a>
+                <a href="mountains.html">山脉</a>
+                <a href="rivers.html">河流</a>
+                <a href="lakes.html">湖泊</a>
+                <a href="parks.html">国家公园</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="history.html">中国历史</a>
+            <div class="dropdown-content">
+                <a href="ancient.html">古代历史</a>
+                <a href="modern.html">近代历史</a>
+                <a href="cultural.html">文化大事</a>
+                <a href="historical-figures.html">历史人物</a>
+            </div>
+        </div>
+    </div>
+    <!-- 导航栏结束 -->
+
+    <!-- 主要内容开始 -->
+    <div id="main-content">
+        <h1>欢迎来到学习专区</h1>
+        <p>在这里，您可以找到关于中国地理和中国历史的详细信息。</p>
+        <!-- 其他内容 -->
+    </div>
+    <!-- 主要内容结束 -->
+
+    <!-- 清除浮动 -->
+    <div style="clear: both;"></div>
+
+</body>
+</html>
+
 <body>
   <div class="article-box">
     <audio src=“images/Dee,ItMayAllEndTomorrow.mp3” autoplay=“true”></audio>
