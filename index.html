@@ -228,23 +228,73 @@
 </html>
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博客归档</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>动态文章归档</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        #main-content {
+            width: 70%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        #blog-archive {
+            width: 25%;
+            background-color: #e0f7fa;
+            padding: 15px;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        details {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #d1e9e9;
+            border-radius: 5px;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            background-color: #87ceeb;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="blog-archive">
-        <h3>BLOG ARCHIVE</h3>
-        <ul id="archive-list"></ul>
+    <!-- 文章归档部分 -->
+    <div id="blog-archive">
+        <h2>📅 动态文章归档</h2>
+        <div id="archive-container"></div>
     </div>
 
+    <!-- 引入 JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
+
 
 <body>
   <div class="article-box">

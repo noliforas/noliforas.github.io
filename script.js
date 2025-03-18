@@ -1,51 +1,42 @@
-// 加载 JSON 并渲染博客归档
-fetch('articles.json')
-    .then(response => response.json())
-    .then(data => renderArchive(data))
-    .catch(error => console.error('加载文章数据失败:', error));
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("articles.json")
+        .then(response => response.json())
+        .then(data => {
+            const archiveContainer = document.getElementById("archive-container");
 
-function renderArchive(data) {
-    let archiveList = document.getElementById("archive-list");
-    archiveList.innerHTML = "";  // 清空现有内容
+            // 按年份进行分组
+            const years = Object.keys(data).sort((a, b) => b - a); // 年份从大到小排序
 
-    Object.keys(data).sort((a, b) => b - a).forEach(year => {
-        let yearItem = document.createElement("li");
-        let months = Object.keys(data[year]).sort((a, b) => b - a);
-        let articleCount = months.reduce((sum, month) => sum + data[year][month].length, 0);
+            years.forEach(year => {
+                const yearDetails = document.createElement("details");
+                const yearSummary = document.createElement("summary");
+                yearSummary.textContent = year + " 年";
+                yearDetails.appendChild(yearSummary);
 
-        yearItem.innerHTML = `<span class="toggle" onclick="toggleElement('year-${year}')">▶ ${year} (${articleCount})</span>`;
-        let yearList = document.createElement("ul");
-        yearList.id = `year-${year}`;
-        yearList.classList.add("hidden");
+                const months = Object.keys(data[year]).sort((a, b) => b - a); // 月份从大到小排序
+                months.forEach(month => {
+                    const monthDetails = document.createElement("details");
+                    const monthSummary = document.createElement("summary");
+                    monthSummary.textContent = month + " 月";
+                    monthDetails.appendChild(monthSummary);
 
-        months.forEach(month => {
-            let monthItem = document.createElement("li");
-            let monthArticleCount = data[year][month].length;
-            monthItem.innerHTML = `<span class="toggle" onclick="toggleElement('month-${year}-${month}')">▶ ${parseInt(month)}月 (${monthArticleCount})</span>`;
+                    const articleList = document.createElement("ul");
+                    data[year][month].forEach(article => {
+                        const listItem = document.createElement("li");
+                        const link = document.createElement("a");
+                        link.href = article.url;
+                        link.textContent = article.title;
+                        listItem.appendChild(link);
+                        articleList.appendChild(listItem);
+                    });
 
-            let monthList = document.createElement("ul");
-            monthList.id = `month-${year}-${month}`;
-            monthList.classList.add("hidden");
+                    monthDetails.appendChild(articleList);
+                    yearDetails.appendChild(monthDetails);
+                });
 
-            data[year][month].forEach(article => {
-                let articleItem = document.createElement("li");
-                articleItem.innerHTML = `<a href="${article.url}">${article.title}</a>`;
-                monthList.appendChild(articleItem);
+                archiveContainer.appendChild(yearDetails);
             });
+        })
+        .catch(error => console.error("无法加载文章数据:", error));
+});
 
-            monthItem.appendChild(monthList);
-            yearList.appendChild(monthItem);
-        });
-
-        yearItem.appendChild(yearList);
-        archiveList.appendChild(yearItem);
-    });
-}
-
-// 折叠/展开列表
-function toggleElement(id) {
-    let element = document.getElementById(id);
-    if (element) {
-        element.classList.toggle("hidden");
-    }
-}
