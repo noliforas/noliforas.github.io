@@ -1,10 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("articles.json")
-        .then(response => response.json())
-        .then(data => {
-            const archiveContainer = document.getElementById("archive-container");
+    const archiveContainer = document.getElementById("archive-container");
 
-            // 按年份进行分组
+    if (!archiveContainer) {
+        console.error("未找到 #archive-container，检查 HTML 结构！");
+        return;
+    }
+
+    fetch("articles.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("无法加载文章数据");
+            }
+            return response.json();
+        })
+        .then(data => {
+            archiveContainer.innerHTML = "";  // 清空“加载中...”的提示
+
             const years = Object.keys(data).sort((a, b) => b - a); // 年份从大到小排序
 
             years.forEach(year => {
@@ -37,6 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 archiveContainer.appendChild(yearDetails);
             });
         })
-        .catch(error => console.error("无法加载文章数据:", error));
+        .catch(error => {
+            console.error("加载文章数据失败:", error);
+            archiveContainer.textContent = "加载文章数据失败，请检查文件路径和结构！";
+        });
 });
+
 
