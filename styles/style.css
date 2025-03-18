@@ -47,11 +47,11 @@ img {
     margin: 0 auto;
   }
 
-  .blog-archive {
+  blog-archive {
     position: fixed;
-    top: 20px;
+    top: 100px;
     right: 20px;  /* 让归档出现在右侧 */
-    width: 300px;
+    width: 200px;
     background: white;
     padding: 15px;
     border-radius: 5px;
