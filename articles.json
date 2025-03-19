@@ -132,11 +132,30 @@
             { "title": "读中国文化要义", "url": "https://noliforas.github.io/articles/20210206.html" },
             { "title": "读认识电影", "url": "https://noliforas.github.io/articles/20210214.html" }
         ]
-    },  
+    }, 
+    "2019": {
+        "12": [
+            { "title": "2019年终总结", "url": "https://noliforas.github.io/articles/20191230.html" }
+        ],
+        "06": [
+            { "title": "他改变了改变中国的那个人", "url": "https://noliforas.github.io/articles/20190602.html" }
+        ]
+    },
     "2018": {
+        "11": [
+            { "title": "老三篇产品说明书", "url": "https://noliforas.github.io/articles/20181102.html" }
+        ],
         "10": [
             { "title": "佳士工人运动的人大余韵", "url": "https://noliforas.github.io/articles/20181020.html" },
+            { "title": "今天你吸猫了嘛", "url": "https://noliforas.github.io/articles/20181030.html" },
             { "title": "关于人生的意义的一些摘抄", "url": "https://noliforas.github.io/articles/meaningoflife-quotes.html" }
+        ],
+        "04": [
+            { "title": "【翻译】你的宠物在中世纪该取个啥名？", "url": "https://noliforas.github.io/articles/20180407.html" }
+        ],
+        "03": [
+            { "title": "【翻译】幸运爱尔兰", "url": "https://noliforas.github.io/articles/20210324.html" },
+            { "title": "【翻译】midwife", "url": "https://noliforas.github.io/articles/20180321.html" }
         ]
     }  
 }
