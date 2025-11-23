@@ -1,95 +1,93 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // ===========================
-    // 功能一：生成右侧文章归档 (基于 articles.json)
+    // 功能一：生成右侧文章归档 (读取 JSON)
     // ===========================
     const archiveContainer = document.getElementById('archive-container');
 
-    // 1. 读取 articles.json 文件
-    fetch('articles.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // 清空"正在加载..."的提示
-            archiveContainer.innerHTML = '';
+    // 只有当页面上有 archive-container 时才运行归档逻辑
+    if (archiveContainer) {
+        fetch('articles.json')
+            .then(response => {
+                if (!response.ok) throw new Error("HTTP error " + response.status);
+                return response.json();
+            })
+            .then(data => {
+                archiveContainer.innerHTML = ''; // 清空加载提示
+                
+                // 年份倒序
+                const years = Object.keys(data).sort((a, b) => b - a);
 
-            // 2. 获取年份并倒序排列 (最新的年份在上面)
-            const years = Object.keys(data).sort((a, b) => b - a);
+                years.forEach(year => {
+                    const details = document.createElement('details');
+                    if (year === years[0]) details.open = true; // 默认展开最新年份
 
-            years.forEach(year => {
-                // 创建年份折叠框 <details>
-                const details = document.createElement('details');
-                // 默认展开最新的年份（你可以把 true 改成 false 让它默认闭合）
-                if (year === years[0]) {
-                    details.open = true;
-                }
+                    const summary = document.createElement('summary');
+                    summary.innerText = year + "年";
+                    // 强制设置样式以防CSS未加载
+                    summary.style.cursor = 'pointer'; 
+                    summary.style.fontWeight = 'bold';
+                    details.appendChild(summary);
 
-                const summary = document.createElement('summary');
-                summary.innerText = year + "年";
-                details.appendChild(summary);
+                    const ul = document.createElement('ul');
+                    
+                    // 月份倒序
+                    const months = Object.keys(data[year]).sort((a, b) => b - a);
 
-                const ul = document.createElement('ul');
+                    months.forEach(month => {
+                        const monthLabel = document.createElement('li');
+                        monthLabel.innerHTML = `<strong>${month}月</strong>`;
+                        monthLabel.style.listStyle = 'none';
+                        monthLabel.style.marginTop = '8px';
+                        ul.appendChild(monthLabel);
 
-                // 3. 获取月份并倒序排列
-                const months = Object.keys(data[year]).sort((a, b) => b - a);
-
-                months.forEach(month => {
-                    // 这里我们为了美观，在月份前面加个小标题，比如 "11月"
-                    const monthLabel = document.createElement('li');
-                    monthLabel.innerHTML = `<strong style="color:#2c3e50;">${month}月</strong>`;
-                    monthLabel.style.listStyle = 'none'; // 月份标题不带圆点
-                    monthLabel.style.marginTop = '10px';
-                    ul.appendChild(monthLabel);
-
-                    // 4. 遍历该月下的所有文章
-                    const articles = data[year][month];
-                    articles.forEach(article => {
-                        const li = document.createElement('li');
-                        const a = document.createElement('a');
-                        a.href = article.url;   // 自动填入 JSON 里的 url
-                        a.innerText = article.title; // 自动填入 JSON 里的 title
-                        
-                        // 为了美观，给链接加一点点缩进
-                        a.style.display = 'block';
-                        a.style.fontSize = '0.9em';
-                        a.style.color = '#666';
-                        
-                        li.appendChild(a);
-                        ul.appendChild(li);
+                        const articles = data[year][month];
+                        articles.forEach(article => {
+                            const li = document.createElement('li');
+                            const a = document.createElement('a');
+                            a.href = article.url;
+                            a.innerText = article.title;
+                            a.style.display = 'block';
+                            a.style.textDecoration = 'none'; // 基础美化
+                            a.style.color = '#555';
+                            li.appendChild(a);
+                            ul.appendChild(li);
+                        });
                     });
+                    details.appendChild(ul);
+                    archiveContainer.appendChild(details);
                 });
-
-                details.appendChild(ul);
-                archiveContainer.appendChild(details);
+            })
+            .catch(err => {
+                console.error("归档加载失败:", err);
+                archiveContainer.innerHTML = '加载失败';
             });
-        })
-        .catch(function(error) {
-            console.log('Hubo un problema con la petición Fetch:' + error.message);
-            archiveContainer.innerHTML = '<p style="color:red;">归档加载失败，请检查 articles.json 格式</p>';
-        });
-
+    }
 
     // ===========================
-    // 功能二：中间文章列表的自动分页 (保留你之前的功能)
+    // 功能二：自动分页逻辑 (修复版)
     // ===========================
-    const itemsPerPage = 5; // 每页显示几篇
+    const itemsPerPage = 10; // 每页显示 5 篇
     const articles = document.querySelectorAll('.article-box');
     
-    // 只有当页面上有文章块时才运行分页逻辑
+    // 如果找到了文章
     if (articles.length > 0) {
-        const paginationContainer = document.getElementById('pagination');
-        if (!paginationContainer) {
-             // 如果找不到分页容器，就创建一个追加到 main-container 底部
-             const newPageContainer = document.createElement('div');
-             newPageContainer.id = 'pagination';
-             document.getElementById('main-container').appendChild(newPageContainer);
-        }
+        let paginationContainer = document.getElementById('pagination');
         
-        const container = document.getElementById('pagination');
+        // 【关键修复】如果找不到放置按钮的盒子，脚本自动在文章列表末尾创建一个
+        if (!paginationContainer) {
+            console.log("未找到分页容器，正在自动创建...");
+            paginationContainer = document.createElement('div');
+            paginationContainer.id = 'pagination';
+            paginationContainer.style.textAlign = 'center';
+            paginationContainer.style.marginTop = '20px';
+            paginationContainer.style.padding = '20px';
+            
+            // 尝试插入到文章列表后面
+            const lastArticle = articles[articles.length - 1];
+            lastArticle.parentNode.insertBefore(paginationContainer, lastArticle.nextSibling);
+        }
+
         const totalPages = Math.ceil(articles.length / itemsPerPage);
         let currentPage = 1;
 
@@ -98,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const end = start + itemsPerPage;
 
             articles.forEach((article, index) => {
+                // 显示当前页的文章，隐藏其他的
                 if (index >= start && index < end) {
                     article.style.display = 'block';
                 } else {
@@ -105,28 +104,47 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
             updateButtons(page);
+            // 翻页后回到顶部
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateButtons(page) {
-            container.innerHTML = '';
+            paginationContainer.innerHTML = '';
             
-            const prevBtn = document.createElement('button');
-            prevBtn.innerText = '← 上一页';
-            prevBtn.className = 'page-btn';
-            prevBtn.disabled = page === 1;
-            prevBtn.onclick = () => { currentPage--; showPage(currentPage); };
-            container.appendChild(prevBtn);
+            // 创建按钮的通用样式函数
+            const createBtn = (text, disabled, onClick) => {
+                const btn = document.createElement('button');
+                btn.innerText = text;
+                btn.disabled = disabled;
+                btn.onclick = onClick;
+                // 添加一些基础样式，防止没有CSS时太丑
+                btn.style.margin = '0 10px';
+                btn.style.padding = '8px 16px';
+                btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+                return btn;
+            };
 
-            const nextBtn = document.createElement('button');
-            nextBtn.innerText = '下一页 →';
-            nextBtn.className = 'page-btn';
-            nextBtn.disabled = page === totalPages;
-            nextBtn.onclick = () => { currentPage++; showPage(currentPage); };
-            container.appendChild(nextBtn);
+            // 上一页
+            const prevBtn = createBtn('← 上一页', page === 1, () => {
+                currentPage--;
+                showPage(currentPage);
+            });
+            paginationContainer.appendChild(prevBtn);
+
+            // 显示页码
+            const pageInfo = document.createElement('span');
+            pageInfo.innerText = ` 第 ${page} / ${totalPages} 页 `;
+            paginationContainer.appendChild(pageInfo);
+
+            // 下一页
+            const nextBtn = createBtn('下一页 →', page === totalPages, () => {
+                currentPage++;
+                showPage(currentPage);
+            });
+            paginationContainer.appendChild(nextBtn);
         }
 
-        // 初始化显示第一页
+        // 启动分页
         showPage(1);
     }
 });
