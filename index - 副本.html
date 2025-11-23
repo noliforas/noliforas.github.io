@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>noliforas的个人园地</title>
+    <link rel="icon" href="favicon.ico" type="images/icon.jpg">
+    <meta name="description" content="这是我的个人网站，用以记录我的所思所想和成长轨迹，如果你感兴趣，欢迎点击查看">
+    <link href="styles/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <img src="images/index-images.jpg" alt="My test image" width="1560" height="450">
+  </body>
+</html>
+
+<html>
+  <head>
+    <style>
+      .article-box {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: #f6f6f2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .summary {
+        height: 100px;
+        overflow: hidden;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .summary::after {
+        content: "...";
+        color: blue;
+        position: absolute;
+      }
+      h2 {
+        text-align: center;
+      }
+      p {
+        text-align: justify;
+        padding: 10px;
+      }
+      .read-more {
+        text-align: right;
+      }
+    </style>
+  </head>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>网站导航</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #navbar {
+            float: left;
+            width: 200px;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        #navbar a {
+            display: block;
+            margin: 10px 0;
+            color: black;
+            text-decoration: none;
+            padding: 5px;
+        }
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        #main-content {
+            margin-left: 220px;
+            padding: 10px;
+        }
+        /* 下拉菜单样式 */
+        .dropdown {
+            position: relative;
+            display: block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏开始 -->
+    <div id="navbar">
+        <div class="dropdown">
+            <a href="index.html">首页</a>
+            <div class="dropdown-content">
+                <a href="index.html">我滴小网站首页</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="https://noliforas.github.io/articles/navi-thoughts.html">某日随想</a>
+            <div class="dropdown-content">
+                <a href="https://noliforas.github.io/articles/20190602.html">他改变了改变中国的那个人</a>  
+                <a href="https://noliforas.github.io/articles/20210226.html">痛苦的苏格拉底还是快乐的猪</a>
+                <a href="https://noliforas.github.io/articles/20210428.html">青年在选择职业时的考虑</a>
+                <a href="https://noliforas.github.io/articles/20220301.html">重启网站的契机</a>
+                <a href="https://noliforas.github.io/articles/20220513.html">上市公司监管与政府监督</a>
+                <a href="https://noliforas.github.io/articles/20220802.html">核酸与清洁女工</a>
+                <a href="https://noliforas.github.io/articles/20220816.html">拍照的恐惧</a>
+                <a href="https://noliforas.github.io/articles/20221123.html">敦煌、疫情十问以及伊朗抗议</a>
+                <a href="https://noliforas.github.io/articles/20221209.html">放开</a>
+                <a href="https://noliforas.github.io/articles/20230228.html">如若不能彻底改变，那便算了？</a>
+                <a href="https://noliforas.github.io/articles/20230318.html">关于死亡</a>
+                <a href="https://noliforas.github.io/articles/20230408.html">清明节与自然物候。</a>
+                <a href="https://noliforas.github.io/articles/20230421.html">夏天到了、不在烂污处纠缠</a>
+                <a href="https://noliforas.github.io/articles/20230603.html">面向资本，人间清醒</a>
+                <a href="https://noliforas.github.io/articles/20230610.html">聊天</a>
+                <a href="https://noliforas.github.io/articles/20230715.html">猪、罗福兴以及油管，还有两三四五六年前的我</a>
+                <a href="https://noliforas.github.io/articles/20230715dream.html">两个梦</a>
+                <a href="https://noliforas.github.io/articles/20230905.html">离散·茶场青年</a>
+                <a href="https://noliforas.github.io/articles/20231209.html">关于台湾选举</a>
+                <a href="https://noliforas.github.io/articles/20240311.html">时刻</a>
+                <a href="https://noliforas.github.io/articles/20240917.html">一生要安全</a>
+                <a href="https://noliforas.github.io/articles/20241118.html">故都的2024年的秋</a>
+                <a href="https://noliforas.github.io/articles/20241202.html">Leaning On the Everlasting Arms</a>
+                <a href="https://noliforas.github.io/articles/20250416.html">一心一意，大富大贵，一生平安，一帆风顺</a>
+                <a href="https://noliforas.github.io/articles/20250903.html">深夜的猫</a>
+                <a href="https://noliforas.github.io/articles/20251004.html">理想人生</a>
+                <a href="https://noliforas.github.io/articles/20251109.html">毒树之果</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="https://noliforas.github.io/articles/navi-places.html">驾言出游</a>
+            <div class="dropdown-content">
+                <a href="https://noliforas.github.io/articles/20210505.html">深圳书店游</a>
+                <a href="https://noliforas.github.io/articles/20231014.html">南沙之行</a>
+                <a href="https://noliforas.github.io/articles/20240622.html">寺庙参观记（一）</a>
+                <a href="https://noliforas.github.io/articles/20240902.html">丰满吉林</a>
+                <a href="https://noliforas.github.io/articles/20241026.html">日本团体游</a>
+                <a href="https://noliforas.github.io/articles/20241110.html">2024深圳西丽</a>
+                <a href="https://noliforas.github.io/articles/20251021.html">正定两日闲步</a>
+            </div>
+        </div>
+        <div class="dropdown">
+          <a href="https://noliforas.github.io/articles/navi-contents.html">内容输入</a>
+          <div class="dropdown-content">
+            <a href="https://noliforas.github.io/articles/20180321.html">【翻译】midwife</a>
+            <a href="https://noliforas.github.io/articles/20180324.html">【翻译】幸运爱尔兰</a>
+            <a href="https://noliforas.github.io/articles/20180407.html">【翻译】你的宠物在中世纪该取个啥名？</a>
+            <a href="https://noliforas.github.io/articles/20181030.html">今天你吸猫了嘛</a>  
+            <a href="https://noliforas.github.io/articles/meaningoflife-quotes.html">关于人生的意义的一些摘抄</a>
+            <a href="https://noliforas.github.io/articles/20191230.html">2019年终总结</a>
+            <a href="https://noliforas.github.io/articles/20201231.html">2020年书影音总结</a>
+            <a href="https://noliforas.github.io/articles/20210102.html">我的播客总结</a>
+              <a href="https://noliforas.github.io/articles/20210206.html">读中国文化要义的遐想</a>
+              <a href="https://noliforas.github.io/articles/20210214.html">读认识电影的遐想</a>
+              <a href="https://noliforas.github.io/articles/20210401.html">认识邪典电影</a>
+              <a href="https://noliforas.github.io/articles/20210501.html">重看《傲慢与偏见》发现两个点</a>
+              <a href="https://noliforas.github.io/articles/20210502.html">呜呜呜这是男子气概吗</a>
+              <a href="https://noliforas.github.io/articles/dopesick.html">成瘾剂量观后</a>
+              <a href="https://noliforas.github.io/articles/20230202.html">狂飙</a>
+              <a href="https://noliforas.github.io/articles/20230216.html">展开讲讲·年度内容大赏</a>
+              <a href="https://noliforas.github.io/articles/20230901.html">爱因斯坦：为什么不要社会主义？</a>
+              <a href="https://noliforas.github.io/articles/20230930.html">与郁达夫</a>
+              <a href="https://noliforas.github.io/articles/20240811.html">与梁家三代人</a>
+              <a href="https://noliforas.github.io/articles/20241123.html">看完好东西之后</a>
+              <a href="https://noliforas.github.io/articles/20241229.html">2024年十佳观影</a>
+              <a href="https://noliforas.github.io/articles/20250211.html">2024年度阅读</a>
+              <a href="https://noliforas.github.io/articles/20250518.html">观戏心得之一</a>
+              <a href="https://noliforas.github.io/articles/20250727.html">AI时代的阅读</a>
+              <a href="https://noliforas.github.io/articles/20250826.html">看《马前泼水》</a>
+              <a href="https://noliforas.github.io/articles/20250913.html">看台州乱弹折子戏</a>
+          </div>
+        </div>
+        <div class="dropdown">
+         <a href="https://noliforas.github.io/articles/navi-life.html">我滴生活</a>
+         <div class="dropdown-content">
+            <a href="https://noliforas.github.io/articles/20230808.html">常营的家</a>
+            <a href="https://noliforas.github.io/articles/20231230.html">三位老板的观念</a>
+            <a href="https://noliforas.github.io/articles/20240128.html">工作的困境</a>
+            <a href="https://noliforas.github.io/articles/20240308.html">工作的困境</a>
+            <a href="https://noliforas.github.io/articles/20240603.html">呼呼·天</a>
+            <a href="https://noliforas.github.io/articles/20240829.html">关于呼家楼·柏林胡同的记忆</a>
+          </div>
+      </div>
+      <div class="dropdown">
+        <a href="https://noliforas.github.io/articles/navi-depo.html">一些存档</a>
+        <div class="dropdown-content">
+          <a href="https://noliforas.github.io/articles/20181020.html">佳士工人运动的人大余韵</a>
+          <a href="https://noliforas.github.io/articles/20181102.html">老三篇产品说明书</a>
+          <a href="https://noliforas.github.io/articles/20210523.html">进厂记（一）</a>
+          <a href="https://noliforas.github.io/articles/20220316.html">加州封锁纪事</a>
+          <a href="https://noliforas.github.io/articles/healthcode.html">健康码的设置</a>
+          <a href="https://noliforas.github.io/articles/20221124.html">没有光的日子</a>
+          <a href="https://noliforas.github.io/articles/20221125">乌鲁木齐大火</a>
+          <a href="https://noliforas.github.io/articles/baizhi-movement">白纸运动纪事 Ⅰ</a>
+          <a href="https://noliforas.github.io/articles/baizhi-movement-2">白纸运动纪事 Ⅱ</a>
+          <a href="https://noliforas.github.io/articles/20221203.html">笨拙的转向</a>
+          <a href="https://noliforas.github.io/articles/20221222.html">新冠后纪事</a>
+          <a href="https://noliforas.github.io/articles/20230111.html">他急了他急了</a>
+          <a href="https://noliforas.github.io/articles/20230217.html">抗疫总结</a>
+          <a href="https://noliforas.github.io/articles/20230604.html">一年又一年</a>
+          <a href="https://noliforas.github.io/articles/20220413.html">上海居民求救电话存档</a>
+          <a href="https://noliforas.github.io/articles/20221231.html">网易新闻的2022年度总结</a>
+          <a href="https://noliforas.github.io/articles/20230705.html">李玟</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="https://noliforas.github.io/articles/navi-others.html">其他玩意</a>
+        <div class="dropdown-content">
+                    
+        </div>
+      </div>  
+    </div>
+    <!-- 导航栏结束 -->
+
+
+    <!-- 清除浮动 -->
+    <div style="clear: both;"></div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态文章归档</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        #main-content {
+            width: 70%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        #blog-archive {
+            width: 20%;
+            background-color: #f6f6f2;
+            padding: 15px;
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        details {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #e5f2f2;
+            border-radius: 5px;
+        }
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            background-color: #e0eff5;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        ul {
+            list-style-type: none; /* 取消默认列表符号 */
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        ul li::before {
+            content: "▶";   /* 实心右三角形 */
+            margin-right: 5px;
+            color: #8d8b8b77;     /* 调整颜色 */
+            font-size: 0.8em;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 文章归档部分 -->
+    <div id="blog-archive">
+        <h2>文章归档</h2>
+        <div id="archive-container"></div>
+    </div>
+
+    <!-- 引入 JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<body>
+  <div class="article-box">
+    <audio autoplay><source src="/images/Dee.mp3" type="audio/mpeg"></audio>
+    <h2><a href="https://noliforas.github.io/articles/article-zero.html">简介</a></h2>
+    <p>现在是2022年11月23日，我试图创建一个网站来记录我的所思所想</p>
+    <p>我相信时代越是复杂，个体诚实的记录越是可贵</p>
+    <p>任何想和我联系的，欢迎发邮件到<a href="mailto:medievalsz@163.com">我的邮箱</a></p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2>之前使用的平台</h2>
+    <p>真正的开始应该是在豆瓣，也是我使用最多的平台。<a href="https://www.douban.com/people/157970365/?_i=9174979T532Mey">我的豆瓣</a>在2021年的12月被永久停用。</p>
+    <p>与此同时，还使用了微信公众号。但是在2022年6月4日，因为发了一句「愿民主和自由 万世都不朽」而被永久停止使用。</p>
+    <p>在豆瓣被迫停用后，我跟随很多人的脚步走向了<a href="https://cn.o3o.ca/@noliforas">长毛象</a>，但是我并不喜欢那里，豆瓣其实已经和现实有一定距离了，但是至少距离书影音是近的，而长毛象上的人给我感觉是都飘在空中，和现实很远。</p>
+    <p>还有一个基于wordpress建立的个人网站，但是因为需要加大收费了，所以我打算不再续费了。会把那个上面的文章移过来。</p>
+    <p>在本网站目前的大致打算是：</p>
+    <ul>
+        <li>写每日的随想，以当日日期作为标题。</li>
+        <li>写一些专题的事情，比如目前的这个。</li>
+        <li>写看电影、剧、书，听音乐、播客、戏剧等等的感受。</li>
+    </ul>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20251109.html" >毒树之果</a></h2>
+    <p>有忌口，不用了，谢谢！</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20251021.html" >正定两日闲步</a></h2>
+    <p>一寺四塔一城墙两文庙</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20251004.html" >理想人生</a></h2>
+    <p>希望可以看见看不见的东西</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250913.html" >看台州乱弹折子戏</a></h2>
+    <p>台州乱弹剧团，一个民营剧团。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250903.html" >深夜的猫</a></h2>
+    <p>深夜的猫和我</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250826.html" >看《马前泼水》</a></h2>
+    <p>头一次会有内容共鸣的京剧</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250727.html" >AI时代的阅读</a></h2>
+    <p>已经有AI了，你还要阅读干什么？</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250518.html" >观戏心得之一</a></h2>
+    <p>白蛇传、锁麟囊、红娘</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250416.html" >一心一意，大富大贵，一生平安，一帆风顺</a></h2>
+    <p>我敬您</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20250211.html" >2024年度阅读</a></h2>
+    <p>2025月2月10日的上班路上，我看到有人背着一个绿色的帆布包，上书八个字：正直勇敢有阅读量！</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241229.html" >2024年十佳观影</a></h2>
+    <p>如题，附赠2023年五佳。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241202.html" >Leaning On the Everlasting Arms</a></h2>
+    <p>Leaning</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241123.html" >看完好东西之后</a></h2>
+    <p>好东西</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241118.html" >故都的2024年的秋</a></h2>
+    <p>悲寂寥</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241110.html" >2024深圳西丽</a></h2>
+    <p>在北方住过，才能看见南方</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20241026.html" >日本团体游</a></h2>
+    <p>第一次去日本+第一次团体游</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240917.html" >一生要安全</a></h2>
+    <p>我恐怕老中在面对自由和安全的选项的时候，一定会放弃自由而选择安全，并且相信这样是好的</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240902.html" >丰满吉林</a></h2>
+    <p>吉林乌拉，自然丰满，建构无聊</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240829.html" >关于呼家楼·柏林胡同的记忆</a></h2>
+    <p>胡同一年</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240811.html" >与梁家三代人</a></h2>
+    <p>屡战屡败的三代人</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240622.html" >寺庙参观记（一）</a></h2>
+    <p>智化寺、广济寺、白塔寺、东岳庙、万寿寺</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240603.html" >呼呼·天</a></h2>
+    <p>silent love</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240311.html" >时刻</a></h2>
+    <p>它为我理解文学作品中的荒谬提供例证。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240308.html" >工作的困境</a></h2>
+    <p>我们暂时不讨论工作本质上是否有意义，就目前的工作场所和工作性质来看，它只能作为当下暂时的谋生的工具，而非志业。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20240128.html" >工作的困境</a></h2>
+    <p>平庸，太平庸的</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20231230.html" >三位老板的观念</a></h2>
+    <p>有三条道路，紧密跟随，国家高于主义，或者将政治排斥在工厂之外。会可能存在不关心或者反对者的姿态吗？</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20231209.html" >关于台湾选举</a></h2>
+    <p>关于韩国瑜和柯文哲的回忆，以及未来的中国。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20231014.html" >南沙之行</a></h2>
+    <p>内地人没有的航运崇拜</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230930.html" >与郁达夫</a></h2>
+    <p>缘分说不清</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230905.html" >20230905离散·茶场青年</a></h2>
+    <p>分道扬镳总是常事，白衣苍狗不足奇。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230901.html" >20230901爱因斯坦：为什么要社会主义</a></h2>
+    <p>他们不自觉地做了自己的唯我论的俘虏，他们感到忧虑不安、孤单寂寞，并且丧失了天真、单纯和淳朴的生活乐趣。人只有献身于社会，才能找出那实际上是短暂而有风险的生命的意义。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230808.html">20230808常营之家</a></h2>
+    <p>在北京生活的第一处停留</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230715dream.html">20230715梦</a></h2>
+    <p>蟒蛇以及没穿衣服的我</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230715.html">20230715</a></h2>
+    <p>猪、罗福兴以及油管，还有两三四五六年前的我</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2>20230705</h2>
+    <p>看新闻看到了李玟自杀，第一感觉是一种巨大的荒谬感，彷佛山河突然向我说话，说它明天将准备离开。我还并不是李玟的粉丝。似乎有点体会到张国荣粉丝那时的心情了。</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230610.html">20230610</a></h2>
+    <p>王丹 真诚。</p>
+   </div>
+</body>
+
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230604.html">20230604</a></h2>
+    <p>又是一年的六月四日。</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230603.html">20230603</a></h2>
+    <p>认知升级 人间清醒 资本主义</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230421.html">20230421</a></h2>
+    <p>自然物候 上野千鹤子。</p>
+   </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230408.html">20230408</a></h2>
+    <p>清明节与自然物候。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230318.html">关于死亡</a></h2>
+    <p>上野千鹤子、网咯激进女权、李硕。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230312.html">20230312</a></h2>
+    <p>又是两会的时节。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230228.html">20230228</a></h2>
+    <p>没必要刻意获得虚无。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230217.html">20230217抗疫总结</a></h2>
+    <p>团结带领全党全国各族人民同心抗疫，以强烈的历史担当和强大的战略定力，因时因势优化调整防控政策措施，高效统筹疫情防控和经济社会发展，成功避免了致病力较强、致死率较高的病毒株的广泛流行，有效保护了人民群众生命安全和身体健康，为打赢疫情防控阻击战赢得了宝贵时间…… 实践证明，党中央对疫情形势的重大判断、对防控工作的重大决策、对防控策略的重大调整是完全正确的，措施是有力的，群众是认可的，成效是巨大的。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230216.html">20230216</a></h2>
+    <p>为好内容的存在和被分享本身而感动。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230202.html">20230202</a></h2>
+    <p>看狂飙和给自己的信</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20230111.html">一个存档20230111</a></h2>
+    <p>一种互联网情绪的留存。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2>网易新闻的2022年度总结</h2>
+    <p>年底了，各式各样的互联网产品的年度总结都来了。新闻也一样，新闻机构总结这个年度最重要的新闻并发布出来，帮助人们回顾这一年，比如<a href="https://new.qq.com/rain/a/20221229A08JPL00.html">新华社</a>。网易新闻也做了一份，不过发出当天视频就被微信、微博下架，甚至于保存的视频都无法分享出去。这实在是对2022年诸多新闻的写照。</p>
+    <video src="/images/News 2022 summary.mp4" controls><p>如果你的浏览器不支持的话，就自己去搜吧</p></video>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221222.html">疫后纪事</a></h2>
+    <p>可耻的行为必定是可耻的谎言进行总结。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221209.html">20211209</a></h2>
+    <p>仓促地放开</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221203.html">20221203</a></h2>
+    <p>笨拙的转向</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/baizhi-movement">白纸运动纪事</a></h2>
+    <p>摘抄他人评论</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/baizhi-movement-2">白纸运动纪事-2</a></h2>
+    <p>大地上的人民纷纷站起。</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221125">20221125</a></h2>
+    <p>作为导火索的乌鲁木齐大火。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221124.html">20221124</a></h2>
+    <p>疫情防控下的北京人民和广州人民</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20221123.html">20221123</a></h2>
+    <p>新网站的首次更新</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/healthcode.html">健康码设置</a></h2>
+    <p>不同地方的健康码设置的不同效果</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220816.html">关于照相的恐惧和厌恶</a></h2>
+    <p>就像守门员面对点球时的感受一样，我看着镜头。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220802.html">核酸与清洁女工</a></h2>
+    <p>核酸与清洁女工</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/dopesick.html">成瘾剂量观后</a></h2>
+    <P>大受启发</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220513.html">上市公司监管与政府监督</a></h2>
+    <p>基于何种理由，对公司的监管是正当的？基于何种理由，对政府的监管是正当的？</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2>上海居民求救电话存档</h2>
+    <audio src="images/SH-records.mp3" controls></audio>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220320.html">读《从公司到国家》</a></h2>
+    <p>复旦中国研究院。。。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220316.html">疫情防控</a></h2>
+    <p>这是一个见证历史的时期，而既然见证了就应该记录下来。历史越是重大，个体的叙事就越是重要。因为宏大叙事在越重大的历史时间中就是越扭曲的、越失真的。耐心的、准确的个体叙述是更接近于历史的真相的。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20220301.html">20220301重启网站的契机</a></h2>
+    <p>一个契机：看到别人公众号上说，文章都有备份在个人博客，并且还有些公众号没法发的也在上面。突然想起我也有一个博客，并且如果我也能够每年都写一些东西，那么这个网站看起来也算有点东西。</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210523.html">进场记（一）</a></h2>
+    <p>东莞·凤岗</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210505.html">深圳书店游</a></h2>
+    <p>前檐→旧天堂→言又几→物质生活→本来书店</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210502.html">呜呜呜这是男子气概吗</a></h2>
+    <p>呜呜呜这是男子气概吗</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210501.html">重看《傲慢与偏见》发现两个点</a></h2>
+    <p>关于夏洛特和伊丽莎白</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210428.html">青年在选择职业时的考虑</a></h2>
+    <p>青年在没有职业的时候总是会想很多</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210401.html">认识邪典电影</a></h2>
+    <p>邪典电影与主流男权文化的暗合</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210226.html">苏格拉底</a></h2>
+    <P>是痛苦的苏格拉底还是快乐的猪？恐怕都做不到</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20210214.html">20210214读认识电影</a></h2>
+    <p>作品中的形式与内容</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">    
+    <h2><a href="https://noliforas.github.io/articles/20210206.html">20210206读中国文化要义</a></h2>
+    <p>中国特色的个人国家关系</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">    
+    <h2><a href="https://noliforas.github.io/articles/20210102.html">我的播客总结</a></h2>
+    <p>书影音之外的一个新维度</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">    
+    <h2><a href="https://noliforas.github.io/articles/20201231.html">2020年书影音总结</a></h2>
+    <p>今年重点是书</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">    
+    <h2><a href="https://noliforas.github.io/articles/20191230.html">2019年终总结</a></h2>
+    <p>音乐为主</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">    
+    <h2><a href="https://noliforas.github.io/articles/20190602.html">他改变了改变中国的那个人</a></h2>
+    <p>如题</P>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20181102.html">老三篇产品说明书</a></h2>
+    <p>OTC</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20181030.html">今天你吸猫了嘛</a></h2>
+    <p>大叫一声妙妙妙！</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20181020.html">20181020</a></h2>
+    <p>佳士工人运动的人大余韵</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20180407.html">【翻译】你的宠物在中世纪该取个啥名？</a></h2>
+    <p>我和我的小白猫</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20180324.html">【翻译】幸运爱尔兰</a></h2>
+    <p>如果不懂咒语，如何求得平安</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/20180321.html">【翻译】midwife</a></h2>
+    <p>中世纪助产士及咒语</p>
+  </div>
+</body>
+
+<body>
+  <div class="article-box">
+    <h2><a href="https://noliforas.github.io/articles/meaningoflife-quotes.html">关于人生的意义的一些摘抄</a></h2>
+    <P class="summary">为什么人要去想人生的意义的问题？</p>    
+  </div>
+</body>
+
