@@ -1,15 +1,32 @@
-<style>
-  body {
-    margin:  0 20px;
-    padding:  0 20px;
-    font-family: "楷体", KaiTi, serif;
-    background-color: #f6f6f2;
-  }  
-  h2 {
+/* 这里是文章页面的统一格式 */
+
+body {
+    margin: 0 auto;        /* 居中 */
+    padding: 20px 60px;    /* 上下留点空隙，左右60px */
+    max-width: 900px;      /* 限制最大宽度，防止在大屏幕上文字拉太长很难看 */
+    font-family: "楷体", "KaiTi", "STKaiti", serif; /* 你的楷体设置 */
+    background-color: #f6f6f2; /* 你的背景色 */
+    line-height: 1.8;      /* 增加行高，阅读更舒服 */
+    color: #333;           /* 字体颜色深灰，比纯黑更护眼 */
+}
+
+h2 {
     text-align: center;
-  }
-  p {
-    text-align: justify;
-    padding:  0 20px;
-  }
-</style>
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+p {
+    text-align: justify;   /* 两端对齐 */
+    text-indent: 2em;      /* 首行缩进两个字 (中文写作习惯) */
+    margin-bottom: 20px;
+}
+
+/* 图片自适应，防止图片太大撑破手机屏幕 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
