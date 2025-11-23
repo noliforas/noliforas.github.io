@@ -623,7 +623,19 @@
     
     <!-- 3. 右侧归档栏 -->
         <aside id="right-sidebar">
-            <div class="nav-title">📅 时间归档</div>
+              
+          <!-- 【时光机模块】 -->
+          <!-- 加上了 class="time-machine" 以便我们用 CSS 控制动画 -->
+          <div id="history-today" class="time-machine" style="display:none;">
+              <div class="tm-header">
+                  <span class="tm-icon">🕰️</span> 
+                  <span class="tm-title">时光机</span>
+                  <span class="tm-status">Running...</span>
+              </div>
+              <ul id="history-list"></ul>
+          </div>
+
+          <div class="nav-title">📅 时间归档</div>
             <!-- 注意：这里我加了一个 id="archive-container" -->
             <div class="archive-list" id="archive-container">
                 <!-- 里面的内容现在是空的，稍后脚本会自动生成 -->

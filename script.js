@@ -1,11 +1,65 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     // ===========================
-    // 功能一：生成右侧文章归档 (读取 JSON)
+    // 功能一：历史上的今天 (新增功能)
+    // ===========================
+    function checkHistoryToday(data) {
+        const today = new Date();
+        // 获取当前的月和日，注意：JavaScript的月份是0-11，所以要+1
+        // padStart(2, '0') 是为了把 "9" 变成 "09"，配合你的文件名格式
+        const currentMonth = String(today.getMonth() + 1).padStart(2, '0');
+        const currentDay = String(today.getDate()).padStart(2, '0');
+        
+        const historyContainer = document.getElementById('history-today');
+        const historyList = document.getElementById('history-list');
+        let hasHistory = false;
+
+        // 遍历 JSON 数据
+        // data 的结构是 Year -> Month -> Array of Articles
+        Object.keys(data).forEach(year => {
+            // 检查这一年有没有当前月份的数据
+            if (data[year][currentMonth]) {
+                const articles = data[year][currentMonth];
+                
+                articles.forEach(article => {
+                    // 正则表达式：从URL中提取日期
+                    // 假设 URL 包含 /20241123.html 这种格式
+                    // \d{4}匹配年份, (\d{2})匹配月份, (\d{2})匹配日期
+                    const match = article.url.match(/(\d{4})(\d{2})(\d{2})\.html/);
+                    
+                    // 如果 URL 符合日期格式，并且日期等于今天
+                    if (match && match[3] === currentDay) {
+                        hasHistory = true;
+                        
+                        const li = document.createElement('li');
+                        li.style.marginBottom = "5px";
+                        
+                        // 计算是几年前
+                        const yearsAgo = today.getFullYear() - parseInt(year);
+                        const timeLabel = yearsAgo === 0 ? "今年" : `${yearsAgo}年前`;
+
+                        li.innerHTML = `
+                            <span style="color: #888; font-size: 0.85em; margin-right: 5px;">[${timeLabel}]</span>
+                            <a href="${article.url}" style="color: #2c3e50; font-weight: 500;">${article.title}</a>
+                        `;
+                        historyList.appendChild(li);
+                    }
+                });
+            }
+        });
+
+        // 只有当找到了历史文章，才显示这个卡片
+        if (hasHistory) {
+            historyContainer.style.display = 'block';
+        }
+    }
+
+
+    // ===========================
+    // 功能二：生成右侧文章归档 (读取 JSON)
     // ===========================
     const archiveContainer = document.getElementById('archive-container');
 
-    // 只有当页面上有 archive-container 时才运行归档逻辑
     if (archiveContainer) {
         fetch('articles.json')
             .then(response => {
@@ -13,25 +67,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.json();
             })
             .then(data => {
-                archiveContainer.innerHTML = ''; // 清空加载提示
-                
-                // 年份倒序
+                // 1. 先运行“历史上的今天”检查
+                checkHistoryToday(data);
+
+                // 2. 再生成归档列表
+                archiveContainer.innerHTML = ''; 
                 const years = Object.keys(data).sort((a, b) => b - a);
 
                 years.forEach(year => {
                     const details = document.createElement('details');
-                    if (year === years[0]) details.open = true; // 默认展开最新年份
+                    if (year === years[0]) details.open = true;
 
                     const summary = document.createElement('summary');
                     summary.innerText = year + "年";
-                    // 强制设置样式以防CSS未加载
                     summary.style.cursor = 'pointer'; 
                     summary.style.fontWeight = 'bold';
                     details.appendChild(summary);
 
                     const ul = document.createElement('ul');
-                    
-                    // 月份倒序
                     const months = Object.keys(data[year]).sort((a, b) => b - a);
 
                     months.forEach(month => {
@@ -48,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             a.href = article.url;
                             a.innerText = article.title;
                             a.style.display = 'block';
-                            a.style.textDecoration = 'none'; // 基础美化
+                            a.style.textDecoration = 'none';
                             a.style.color = '#555';
                             li.appendChild(a);
                             ul.appendChild(li);
@@ -59,31 +112,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             })
             .catch(err => {
-                console.error("归档加载失败:", err);
+                console.error("加载失败:", err);
                 archiveContainer.innerHTML = '加载失败';
             });
     }
 
     // ===========================
-    // 功能二：自动分页逻辑 (修复版)
+    // 功能三：自动分页逻辑
     // ===========================
-    const itemsPerPage = 10; // 每页显示 5 篇
+    const itemsPerPage = 10; 
     const articles = document.querySelectorAll('.article-box');
     
-    // 如果找到了文章
     if (articles.length > 0) {
         let paginationContainer = document.getElementById('pagination');
         
-        // 【关键修复】如果找不到放置按钮的盒子，脚本自动在文章列表末尾创建一个
         if (!paginationContainer) {
-            console.log("未找到分页容器，正在自动创建...");
             paginationContainer = document.createElement('div');
             paginationContainer.id = 'pagination';
             paginationContainer.style.textAlign = 'center';
             paginationContainer.style.marginTop = '20px';
             paginationContainer.style.padding = '20px';
-            
-            // 尝试插入到文章列表后面
             const lastArticle = articles[articles.length - 1];
             lastArticle.parentNode.insertBefore(paginationContainer, lastArticle.nextSibling);
         }
@@ -96,7 +144,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const end = start + itemsPerPage;
 
             articles.forEach((article, index) => {
-                // 显示当前页的文章，隐藏其他的
                 if (index >= start && index < end) {
                     article.style.display = 'block';
                 } else {
@@ -104,39 +151,36 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
             updateButtons(page);
-            // 翻页后回到顶部
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateButtons(page) {
             paginationContainer.innerHTML = '';
             
-            // 创建按钮的通用样式函数
             const createBtn = (text, disabled, onClick) => {
                 const btn = document.createElement('button');
                 btn.innerText = text;
                 btn.disabled = disabled;
                 btn.onclick = onClick;
-                // 添加一些基础样式，防止没有CSS时太丑
                 btn.style.margin = '0 10px';
                 btn.style.padding = '8px 16px';
                 btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+                btn.style.backgroundColor = disabled ? '#eee' : 'white';
+                btn.style.border = '1px solid #ddd';
+                btn.style.borderRadius = '20px';
                 return btn;
             };
 
-            // 上一页
             const prevBtn = createBtn('← 上一页', page === 1, () => {
                 currentPage--;
                 showPage(currentPage);
             });
             paginationContainer.appendChild(prevBtn);
 
-            // 显示页码
             const pageInfo = document.createElement('span');
             pageInfo.innerText = ` 第 ${page} / ${totalPages} 页 `;
             paginationContainer.appendChild(pageInfo);
 
-            // 下一页
             const nextBtn = createBtn('下一页 →', page === totalPages, () => {
                 currentPage++;
                 showPage(currentPage);
@@ -144,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function() {
             paginationContainer.appendChild(nextBtn);
         }
 
-        // 启动分页
         showPage(1);
     }
 });

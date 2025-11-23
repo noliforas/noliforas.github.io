@@ -245,3 +245,104 @@ summary:hover {
         display: none; 
     }
 }
+
+/* --- 时光机专属特效 --- */
+
+/* 1. 时光机容器的基础样子 */
+.time-machine {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%); /* 淡淡的科技蓝渐变 */
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #b3e5fc; /* 边框颜色 */
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    
+    /* 核心动画：呼吸特效 */
+    animation: machine-breathe 3s infinite ease-in-out;
+}
+
+/* 2. 定义呼吸动画 (发光 + 轻微放大) */
+@keyframes machine-breathe {
+    0% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+        transform: scale(1);
+        border-color: #b3e5fc;
+    }
+    50% {
+        /* 发光变强，稍微放大一点点，像心脏跳动 */
+        box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
+        transform: scale(1.02); 
+        border-color: #4fc3f7;
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+        transform: scale(1);
+        border-color: #b3e5fc;
+    }
+}
+
+/* 3. 标题栏样式 */
+.tm-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed #b3e5fc;
+    padding-bottom: 8px;
+}
+
+.tm-icon {
+    font-size: 1.4em;
+    margin-right: 8px;
+    /* 让时钟图标一直慢慢转动 */
+    animation: icon-spin 10s linear infinite;
+    display: inline-block;
+}
+
+@keyframes icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.tm-title {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.tm-status {
+    font-size: 0.7em;
+    color: #16a085;
+    margin-left: auto; /* 把它推到最右边 */
+    font-family: monospace; /* 代码字体 */
+    opacity: 0.8;
+}
+
+/* 4. 列表内容的样式调整 */
+#history-list {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#history-list li {
+    background: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: 0.2s;
+    border-left: 3px solid #3498db; /* 左侧加个小蓝条装饰 */
+}
+
+#history-list li:hover {
+    background: white;
+    transform: translateX(5px); /* 鼠标放上去会往右动 */
+}
+
+#history-list a {
+    color: #34495e;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
