@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的2025！</title>
+    
+    <!-- 引入可爱的标题字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <!-- 🔥 新增：引入非常有情绪感的中文字体（马善政手写体），专门用于逐字打印 🔥 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #FDFBF7; 
+            --text-color: #4A4036; 
+            --accent-color: #FF8BA7; 
+            --tape-color: rgba(255, 240, 200, 0.8);
+            --tape-blue: rgba(180, 220, 255, 0.8);
+            --line-color: #E0D8D0; 
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            overflow-x: hidden; line-height: 1.6;
+        }
+
+        h1, h2, h3, .tape, .post-it, .gallery-caption, .timeline-date, .filmstrip-title {
+            font-family: 'ZCOOL KuaiLe', sans-serif;
+        }
+
+        /* 开场 */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: url('https://picsum.photos/id/1018/1920/1080') no-repeat center center/cover; position: relative; background-attachment: fixed; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(253, 251, 247, 0.4); }
+        .hero-content { position: relative; z-index: 1; padding: 30px 40px; background: rgba(255, 255, 255, 0.9); border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 3px dashed var(--accent-color); transform: rotate(-2deg); }
+        .hero h1 { font-size: 5rem; margin: 0; color: var(--accent-color); text-shadow: 2px 2px 0px #fff; }
+        .hero p { font-size: 1.5rem; margin-top: 10px; font-weight: bold;}
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--accent-color); margin-bottom: 50px; }
+
+        /* 手账日记本 */
+        .journal-entry { display: flex; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); margin-bottom: 50px; align-items: center; gap: 30px; }
+        .journal-entry:nth-child(even) { flex-direction: row-reverse; }
+        .journal-photo { flex: 0 0 45%; position: relative; }
+        .journal-photo img { width: 100%; border-radius: 4px; box-shadow: 2px 4px 15px rgba(0,0,0,0.15); transform: rotate(-2deg); transition: transform 0.3s; cursor: pointer; }
+        .journal-entry:nth-child(even) .journal-photo img { transform: rotate(2deg); }
+        .journal-photo img:hover { transform: rotate(0deg) scale(1.03); }
+        .journal-text { flex: 1; background-image: repeating-linear-gradient(transparent, transparent 31px, var(--line-color) 31px, var(--line-color) 32px); line-height: 32px; padding-top: 6px; font-size: 1.1rem; color: #555; text-align: justify; }
+        .journal-text h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 1.8rem; background: #fff; display: inline-block; padding: 0 10px; border-radius: 10px; line-height: 1.2;}
+
+        /* 时光轴 */
+        .timeline { position: relative; margin-top: 30px; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--accent-color); top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+        .timeline-item { padding: 20px 40px; position: relative; width: 50%; box-sizing: border-box; clear: both; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+        .timeline-item::after { content: ''; position: absolute; width: 20px; height: 20px; background-color: #fff; border: 4px solid var(--accent-color); border-radius: 50%; top: 30px; z-index: 1; }
+        .timeline-item:nth-child(odd)::after { right: -14px; }
+        .timeline-item:nth-child(even)::after { left: -14px; }
+        .timeline-content { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); display: inline-block; max-width: 90%; text-align: left; }
+        .timeline-date { background: var(--accent-color); color: #fff; padding: 5px 15px; border-radius: 20px; display: inline-block; margin-bottom: 10px; font-size: 1.2rem; }
+        .timeline-content > img { max-width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer; }
+        .scroll-album { display: flex; overflow-x: auto; gap: 15px; padding: 10px 0; scroll-snap-type: x mandatory; }
+        .scroll-album::-webkit-scrollbar { height: 6px; }
+        .scroll-album::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+        .scroll-album img { height: 180px; width: auto; flex-shrink: 0; scroll-snap-align: center; border-radius: 8px; cursor: pointer; border: 1px solid #eee; }
+
+        /* 电影胶卷 */
+        .filmstrip-section { background: #2C2A29; padding: 30px 0; margin: 40px 0; position: relative; overflow: hidden; }
+        .filmstrip-title { text-align: center; color: #fff; font-size: 1.8rem; margin-bottom: 20px; }
+        .marquee { display: flex; width: 200%; animation: scrollLeft 35s linear infinite; }
+        .marquee img { height: 180px; margin: 0 10px; border: 10px solid #fff; border-bottom: 30px solid #fff; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .marquee:hover { animation-play-state: paused; }
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* 错落手账墙 */
+        .gallery { column-count: 3; column-gap: 25px; padding-top: 20px; }
+        .gallery-item { break-inside: avoid; margin-bottom: 35px; background: #fff; padding: 12px 12px 30px 12px; box-shadow: 2px 8px 20px rgba(0,0,0,0.1); position: relative; transition: all 0.3s ease; }
+        .gallery-item img { width: 100%; display: block; cursor: pointer;}
+        .gallery-item:nth-child(odd) { transform: rotate(2deg); }
+        .gallery-item:nth-child(even) { transform: rotate(-2deg); }
+        .gallery-item:hover { transform: scale(1.05) rotate(0deg); z-index: 10; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .tape { position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 90px; height: 30px; z-index: 2; }
+        .tape.yellow { background-color: var(--tape-color); }
+        .tape.blue { background-color: var(--tape-blue); transform: translateX(-50%) rotate(4deg); }
+        .post-it { background: #FFF2AA; padding: 20px; font-size: 1.3rem; line-height: 1.6; box-shadow: 3px 5px 15px rgba(0,0,0,0.1); transform: rotate(3deg); margin-bottom: 30px; break-inside: avoid; position: relative; font-family: 'ZCOOL KuaiLe', sans-serif;}
+        .post-it::before { content: '📌'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 24px; }
+        .gallery-caption { text-align: center; margin-top: 15px; font-size: 1.1rem; color: #666; }
+        
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* 🔥🔥🔥 终极版灯箱（上图下文 + 手写打字机效果） 🔥🔥🔥 */
+        .lightbox { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(15, 15, 15, 0.98); /* 更深的黑色，电影感拉满 */
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; 
+            padding: 40px 20px; box-sizing: border-box;
+        }
+        .lightbox.active { opacity: 1; pointer-events: auto; }
+        
+        /* 图片在上方居中 */
+        .lightbox-img-wrap { 
+            display: flex; justify-content: center; align-items: center;
+            margin-bottom: 30px; /* 给下方文字留出空间 */
+        }
+        .lightbox-img-wrap img { 
+            max-width: 90vw; max-height: 60vh; /* 保证图片不会占满全屏，留下放文字的地方 */
+            border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        
+        /* 文本在下方：手写体设定 */
+        .lightbox-text-wrap { 
+            width: 100%; max-width: 800px; /* 限制文字最宽的范围 */
+            text-align: left; /* 左对齐，更像写信 */
+        }
+        .lightbox-text-wrap p { 
+            /* 关键！引入的手写体！ */
+            font-family: 'Ma Shan Zheng', cursive, "PingFang SC"; 
+            font-size: 2.2rem; /* 字体加大，凸显情绪 */
+            color: rgba(255, 255, 255, 0.9); /* 微微透光的白色 */
+            line-height: 1.8; 
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* 打字机闪烁的光标效果 */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 2.2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            vertical-align: text-bottom;
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .lightbox-close { 
+            position: absolute; top: 20px; right: 40px; color: rgba(255,255,255,0.5); 
+            font-size: 50px; cursor: pointer; transition: all 0.2s; z-index: 10000;
+        }
+        .lightbox-close:hover { transform: scale(1.2); color: white; }
+
+        @media (max-width: 800px) {
+            .gallery { column-count: 2; }
+            .timeline-item { width: 100%; left: 0 !important; text-align: left !important; padding: 20px 0 20px 40px; }
+            .timeline::after { left: 10px; }
+            .timeline-item::after { left: -4px !important; }
+            .journal-entry { flex-direction: column !important; } 
+            .lightbox-text-wrap p { font-size: 1.6rem; } /* 手机上看字体稍微小点 */
+        }
+        @media (max-width: 500px) { .gallery { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content fade-in visible">
+            <h1>我们的2025！</h1>
+            <p>👇</p>
+        </div>
+    </header>
+
+    <!-- 1. 手账日记本（明文显示长文） -->
+    <div class="container">
+        <h2 class="section-title fade-in">📝 岁月长信 📝</h2>
+        <div class="journal-entry fade-in">
+            <div class="journal-photo">
+                <div class="tape yellow"></div>
+                <img src="https://picsum.photos/id/1025/500/600" class="zoomable" 
+                     data-desc="这是一个平平无奇的周末下午。本来我们在家里各自玩着手机，谁也没有说话。后来不知道是谁提议要不要去楼下走走，于是我们就这样穿着拖鞋下楼了。没有化妆，也没有精心打扮，但是那天的阳光刚刚好穿过树叶打在脸上，突然觉得这就是我理想中最踏实的生活。">
+            </div>
+            <div class="journal-text">
+                <h3>那天下午的阳光 ☀️</h3>
+                这是一个平平无奇的周末下午。本来我们在家里各自玩着手机，谁也没有说话。后来不知道是谁提议要不要去楼下走走，于是我们就这样穿着拖鞋下楼了。<br><br>
+                没有化妆，也没有精心打扮，但是那天的阳光刚刚好穿过树叶打在脸上，突然觉得这就是我理想中最踏实的生活。幸福就在我们家楼下的长椅旁边。
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 时光轴 -->
+    <div class="container" id="timeline-sec" style="padding-top: 0;">
+        <h2 class="section-title fade-in">📖 时光纪念册 📖</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2月 春节</div>
+                    <h3>回老家过大年</h3>
+                    <p>院子里的红灯笼，还有包到手软的饺子。</p>
+                    <img src="https://picsum.photos/id/102/500/300" class="zoomable" data-desc="那天晚上我们包了将近三百个饺子，一边看春晚一边聊天，虽然电视里演了什么全都不记得了，但是屋子里的热气和大家的笑声，成了这个冬天最温暖的记忆。">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 无限滚动的电影胶卷 -->
+    <div class="filmstrip-section fade-in">
+        <div class="filmstrip-title">🎞️ 外出觅食有！ 🎞️</div>
+        <div class="marquee">
+            <!-- 给这里的图片加上 data-desc，外表干干净净，点开有惊喜！ -->
+            <img src="images/2025memory/P60" class="zoomable" data-desc="口感丰富的紫苏肉丸。">
+            <img src="https://picsum.photos/id/104/300/200" class="zoomable" data-desc="这天的云好像棉花糖啊。">
+            <img src="https://picsum.photos/id/106/300/200" class="zoomable" data-desc="加班到很晚，但是看到城市的夜景，突然觉得也很值得。">
+            <img src="https://picsum.photos/id/107/300/200" class="zoomable">
+            <img src="https://picsum.photos/id/103/300/200" class="zoomable" data-desc="买给自己的第一束花，心情明亮了一整天。">
+            <img src="https://picsum.photos/id/104/300/200" class="zoomable" data-desc="这天的云好像棉花糖啊。">
+            <img src="https://picsum.photos/id/106/300/200" class="zoomable" data-desc="加班到很晚，但是看到城市的夜景，突然觉得也很值得。">
+            <img src="https://picsum.photos/id/107/300/200" class="zoomable">
+        </div>
+    </div>
+
+    <!-- 4. 错落手账墙 -->
+    <div class="container" id="gallery-sec">
+        <h2 class="section-title fade-in">📌 记忆公告板 📌</h2>
+        <div class="gallery fade-in">
+            
+            <div class="post-it">
+                写在墙上的悄悄话：<br><br>
+                这一年我们拍了好多照片呀！每一张里面都有笑声。
+            </div>
+
+            <!-- 🔥 你的要求就在这里：不显示标题，只有图，点开之后开始“吐字” 🔥 -->
+            <div class="gallery-item">
+                <div class="tape yellow"></div>
+                <!-- 注意：外面没有 <div class="gallery-caption">，就是干干净净的一张图 -->
+                <img src="https://picsum.photos/id/1018/400/500" class="zoomable" 
+                     data-desc="后来我们又去了一次那片海。和几年前相比，海浪的声音一点没变，只是我们在慢慢长大。其实人生的旅途里，只要身边站着的是同一个人，去哪里都无所谓吧。">
+            </div>
+
+            <div class="gallery-item">
+                <div class="tape blue"></div>
+                <img src="https://picsum.photos/id/1062/400/300" class="zoomable" 
+                     data-desc="它刚来我们家的时候只有鞋盒那么大。现在已经是个调皮捣蛋的拆家大王了，连沙发都被咬破了一个洞，但每次看到它无辜的眼神，彻底被它拿捏了！">
+            </div>
+
+            <!-- 依然可以有带标题的图，完全自由 -->
+            <div class="gallery-item">
+                <div class="tape yellow"></div>
+                <img src="https://picsum.photos/id/202/400/400" class="zoomable" data-desc="这是我人生中第一次亲手烤的饼干！虽然焦了两个。">
+                <div class="gallery-caption">第一次烤饼干</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 🔥 终极必杀：上大图、下逐字打印手写体 的灯箱 🔥 -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        
+        <!-- 上部分：图片 -->
+        <div class="lightbox-img-wrap">
+            <img src="" id="lightbox-img" alt="放大图片">
+        </div>
+        
+        <!-- 下部分：手写字逐字打印区 -->
+        <div class="lightbox-text-wrap" id="lightbox-text-wrap">
+            <!-- 文字将通过JS注入到这个 p 标签里 -->
+            <p id="lightbox-desc"></p>
+        </div>
+    </div>
+
+    <script>
+        // 1. 页面滚动淡入效果
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => { observer.observe(el); });
+
+        // 2. 核心：打字机特效灯箱逻辑
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxDesc = document.getElementById('lightbox-desc');
+        const lightboxTextWrap = document.getElementById('lightbox-text-wrap');
+        const closeBtn = document.getElementById('lightbox-close');
+        
+        let typeInterval; // 记录打字机的定时器
+
+        document.querySelectorAll('.zoomable').forEach(img => {
+            img.addEventListener('click', function(e) {
+                // 打开灯箱前，先清空上一次的打字定时器和文字内容
+                clearInterval(typeInterval);
+                lightboxDesc.innerHTML = ''; 
+                
+                lightbox.classList.add('active');
+                lightboxImg.src = this.src; // 加载图片
+                
+                // 获取这段专属文字
+                const descText = this.getAttribute('data-desc');
+
+                if(descText) {
+                    lightboxTextWrap.style.display = 'block'; // 显示文字区域
+                    let i = 0;
+                    
+                    // 🚀 核心大招：每隔 60毫秒（可调）吐出一个字 🚀
+                    typeInterval = setInterval(() => {
+                        // 截取到当前位置的文字，并加上闪烁的光标
+                        lightboxDesc.innerHTML = descText.substring(0, i) + '<span class="cursor"></span>';
+                        i++;
+                        
+                        // 当文字全打完时，停止定时器
+                        if (i > descText.length) {
+                            clearInterval(typeInterval);
+                            // 打印完成后，保留文字和末尾静止的光标
+                            lightboxDesc.innerHTML = descText + '<span class="cursor" style="animation: none; opacity: 0.8;"></span>';
+                        }
+                    }, 80); // <--- 这里的 80 是打字速度，数字越小打字越快，数字越大打字越慢
+
+                } else {
+                    // 如果没写文字，就不显示打字区，只看图
+                    lightboxTextWrap.style.display = 'none'; 
+                }
+                
+                e.stopPropagation();
+            });
+        });
+
+        // 关灯箱时，必须立刻停止打字
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            clearInterval(typeInterval); // 停止打字
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        // 点击背景区域也可以关掉灯箱
+        lightbox.addEventListener('click', (e) => {
+            // 只要不是点在图片上，就关掉
+            if (e.target !== lightboxImg) { 
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
