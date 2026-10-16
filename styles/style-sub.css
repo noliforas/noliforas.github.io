@@ -19,7 +19,7 @@ h2 {
 
 p {
     text-align: justify;   /* 两端对齐 */
-    text-indent: 2em;      /* 首行缩进两个字 (中文写作习惯) */
+    text-indent: 0;      /* 首行缩进两个字 (中文写作习惯) */
     margin-bottom: 20px;
 }
 
