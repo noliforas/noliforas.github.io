@@ -14,6 +14,13 @@
         text-align: justify;
         padding:  0 60px;
       }
+      .article-image {
+        display: block;
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        margin: 24px auto;
+      }
     </style>
   </head>
 </html>

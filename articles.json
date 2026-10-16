@@ -1,5 +1,9 @@
 {
     "2026": {
+        "10": [
+            { "title": "追寻秋天", "url": "https://noliforas.github.io/articles/20261016.html" },
+            { "title": "关于播客的一些回忆", "url": "https://noliforas.github.io/articles/20261010.html" }
+        ],
         "06": [
             { "title": "我想生活得沉重一些", "url": "https://noliforas.github.io/articles/20260603.html" }
         ],
@@ -41,6 +45,9 @@
         ],
         "02": [
             { "title": "2024年度阅读", "url": "https://noliforas.github.io/articles/20250211.html" }
+        ],
+        "01": [
+            { "title": "《世界上最糟糕的人》", "url": "https://noliforas.github.io/articles/20250105.html" }
         ]
     },
     "2024": {
@@ -64,9 +71,15 @@
             { "title": "关于呼家楼·柏林胡同的记忆", "url": "https://noliforas.github.io/articles/20240829.html" },
             { "title": "与梁家三代人", "url": "https://noliforas.github.io/articles/20240811.html" }
         ],
+        "07": [
+            { "title": "20240707", "url": "https://noliforas.github.io/articles/20240707.html" }
+        ],
         "06": [
             { "title": "寺庙参观记（一）", "url": "https://noliforas.github.io/articles/20240622.html" },
             { "title": "呼呼·天", "url": "https://noliforas.github.io/articles/20240603.html" }
+        ],
+        "04": [
+            { "title": "《僧侣与枪》观后", "url": "https://noliforas.github.io/articles/20240421.html" }
         ],
         "03": [
             { "title": "一个时刻", "url": "https://noliforas.github.io/articles/20240311.html" },
@@ -80,6 +93,9 @@
         "12": [
             { "title": "三位老板的观念", "url": "https://noliforas.github.io/articles/20231230.html" },
             { "title": "关于台湾选举", "url": "https://noliforas.github.io/articles/20231209.html" }
+        ],
+        "11": [
+            { "title": "在大连的周末", "url": "https://noliforas.github.io/articles/20231112.html" }
         ],
         "10": [
             { "title": "南沙之行", "url": "https://noliforas.github.io/articles/20231014.html" }
