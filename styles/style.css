@@ -346,3 +346,121 @@ summary:hover {
     text-decoration: none;
     display: block;
 }
+
+/* ===========================
+   文章搜索框
+   =========================== */
+
+.site-search {
+    background: white;
+    padding: 22px;
+    margin-bottom: 30px;
+    border: 1px solid #e7e7e7;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.site-search h2 {
+    margin: 0 0 14px;
+    color: var(--accent-color);
+    font-size: 1.15em;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-form input {
+    min-width: 0;
+    flex: 1;
+    padding: 11px 14px;
+    border: 1px solid #d7dce1;
+    border-radius: 8px;
+    background: #fdfdfd;
+    color: var(--text-color);
+    font: inherit;
+}
+
+.search-form input:focus {
+    outline: 2px solid rgba(22, 160, 133, 0.2);
+    border-color: var(--hover-color);
+}
+
+.search-form button {
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    font: inherit;
+}
+
+.search-form button:hover {
+    background: var(--hover-color);
+}
+
+.search-status {
+    min-height: 1.4em;
+    margin: 10px 0 0;
+    color: #777;
+    font-size: 0.88em;
+}
+
+.search-result {
+    background: white;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    border: 1px solid #eee;
+    border-left: 4px solid var(--hover-color);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.search-result h3 {
+    margin: 0 0 8px;
+    font-size: 1.15em;
+}
+
+.search-result h3 a {
+    color: var(--link-color);
+}
+
+.search-result p {
+    margin: 0;
+    color: #666;
+    line-height: 1.7;
+}
+
+.search-empty {
+    padding: 26px;
+    margin: 0;
+    background: white;
+    border-radius: 10px;
+    color: #666;
+    text-align: center;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* 手机屏幕上的搜索框 */
+@media (max-width: 600px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form button {
+        width: 100%;
+    }
+}

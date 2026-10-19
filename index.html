@@ -180,6 +180,38 @@
             <source src="/images/Dee.mp3" type="audio/mpeg">
         </audio>
 
+                <!-- 文章搜索框 -->
+        <section class="site-search" aria-labelledby="search-heading">
+            <h2 id="search-heading">🔎 搜索文章</h2>
+
+            <form id="search-form" class="search-form" role="search">
+                <label class="visually-hidden" for="search-input">
+                    输入文章标题或正文关键词
+                </label>
+
+                <input
+                    id="search-input"
+                    type="search"
+                    placeholder="输入标题或正文关键词……"
+                    autocomplete="off"
+                >
+
+                <button type="submit">搜索</button>
+            </form>
+
+            <p id="search-status" class="search-status" aria-live="polite">
+                可以搜索文章标题和正文内容
+            </p>
+        </section>
+
+        <!-- 搜索结果会显示在这里 -->
+          <section
+              id="search-results"
+              class="search-results"
+              aria-label="搜索结果"
+              hidden
+          ></section>
+
         <!-- 文章列表容器 -->
         <div id="articles-wrapper">
             

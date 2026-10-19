@@ -205,3 +205,369 @@ document.addEventListener("DOMContentLoaded", function() {
                 progressBar.style.width = scrolled + "%";
             }
         });
+
+        // ===========================
+// 全站文章搜索
+// ===========================
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("search-form");
+    const searchInput = document.getElementById("search-input");
+    const searchStatus = document.getElementById("search-status");
+    const searchResults = document.getElementById("search-results");
+    const articlesWrapper = document.getElementById("articles-wrapper");
+
+    // 如果当前页面没有搜索框，就不执行搜索代码。
+    if (
+        !searchForm ||
+        !searchInput ||
+        !searchStatus ||
+        !searchResults ||
+        !articlesWrapper
+    ) {
+        return;
+    }
+
+    let searchIndexPromise = null;
+    let searchTimer = null;
+
+    // 统一处理大小写、全角字符和空格。
+    function normalizeText(text) {
+        return String(text || "")
+            .normalize("NFKC")
+            .toLocaleLowerCase("zh-CN")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
+
+    // 从首页的文章卡片中取得文章标题和链接。
+    function collectArticleLinks() {
+        const articles = [];
+        const usedUrls = new Set();
+
+        document.querySelectorAll(".article-box").forEach(function (card) {
+            const link = card.querySelector("h2 a");
+
+            // “简介”等没有文章链接的卡片不加入搜索。
+            if (!link) {
+                return;
+            }
+
+            const url = link.href;
+
+            if (usedUrls.has(url)) {
+                return;
+            }
+
+            usedUrls.add(url);
+
+            articles.push({
+                title: link.textContent.trim(),
+                url: url,
+                summary: card.textContent.replace(/\s+/g, " ").trim()
+            });
+        });
+
+        return articles;
+    }
+
+    // 读取每一篇文章的正文，建立全文搜索索引。
+    function buildSearchIndex() {
+        if (searchIndexPromise) {
+            return searchIndexPromise;
+        }
+
+        const articleLinks = collectArticleLinks();
+        const cacheKey = "noliforas-search-index-v1-" + articleLinks.length;
+
+        // 在同一个浏览器标签页中刷新时，尽量使用已经建立的索引。
+        try {
+            const cachedIndex = sessionStorage.getItem(cacheKey);
+
+            if (cachedIndex) {
+                searchIndexPromise = Promise.resolve(JSON.parse(cachedIndex));
+                return searchIndexPromise;
+            }
+        } catch (error) {
+            console.warn("无法读取搜索缓存：", error);
+        }
+
+        let completedCount = 0;
+
+        searchIndexPromise = Promise.all(
+            articleLinks.map(async function (article) {
+                let content = article.summary;
+
+                try {
+                    const response = await fetch(article.url);
+
+                    if (!response.ok) {
+                        throw new Error("HTTP " + response.status);
+                    }
+
+                    const articleHTML = await response.text();
+                    const parser = new DOMParser();
+                    const articleDocument = parser.parseFromString(
+                        articleHTML,
+                        "text/html"
+                    );
+
+                    // 删除脚本和样式，避免把程序代码放进搜索内容。
+                    articleDocument
+                        .querySelectorAll("script, style, noscript")
+                        .forEach(function (element) {
+                            element.remove();
+                        });
+
+                    if (articleDocument.body) {
+                        content = articleDocument.body.textContent
+                            .replace(/\s+/g, " ")
+                            .trim();
+                    }
+                } catch (error) {
+                    // 某一篇文章读取失败时，仍然可以搜索它的标题和首页摘要。
+                    console.warn("无法读取文章正文：", article.url, error);
+                }
+
+                completedCount += 1;
+                searchStatus.textContent =
+                    "第一次使用，正在准备全文搜索：" +
+                    completedCount +
+                    " / " +
+                    articleLinks.length;
+
+                return {
+                    title: article.title,
+                    url: article.url,
+                    content: content
+                };
+            })
+        ).then(function (searchIndex) {
+            try {
+                sessionStorage.setItem(
+                    cacheKey,
+                    JSON.stringify(searchIndex)
+                );
+            } catch (error) {
+                console.warn("无法保存搜索缓存：", error);
+            }
+
+            return searchIndex;
+        });
+
+        return searchIndexPromise;
+    }
+
+    // 计算一篇文章与关键词的匹配程度。
+    function calculateScore(article, completeQuery, terms) {
+        const title = normalizeText(article.title);
+        const content = normalizeText(article.content);
+        const allText = title + " " + content;
+
+        // 输入多个关键词时，文章必须包含全部关键词。
+        const containsAllTerms = terms.every(function (term) {
+            return allText.includes(term);
+        });
+
+        if (!containsAllTerms) {
+            return -1;
+        }
+
+        let score = 0;
+
+        // 标题完全一致时，排在最前面。
+        if (title === completeQuery) {
+            score += 1000;
+        }
+
+        // 标题包含完整搜索内容时，优先显示。
+        if (title.includes(completeQuery)) {
+            score += 500;
+        }
+
+        terms.forEach(function (term) {
+            if (title.includes(term)) {
+                score += 100;
+            }
+
+            // 正文中出现次数越多，相关程度稍高。
+            const occurrenceCount = content.split(term).length - 1;
+            score += Math.min(occurrenceCount, 10);
+        });
+
+        return score;
+    }
+
+    // 从正文中截取关键词附近的一小段文字。
+    function createSnippet(content, terms) {
+        const originalText = String(content || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+        const normalizedContent = normalizeText(originalText);
+        let matchPosition = -1;
+
+        terms.forEach(function (term) {
+            const position = normalizedContent.indexOf(term);
+
+            if (
+                position >= 0 &&
+                (matchPosition === -1 || position < matchPosition)
+            ) {
+                matchPosition = position;
+            }
+        });
+
+        if (matchPosition < 0) {
+            matchPosition = 0;
+        }
+
+        const start = Math.max(0, matchPosition - 55);
+        const end = Math.min(originalText.length, matchPosition + 115);
+
+        return (
+            (start > 0 ? "…" : "") +
+            originalText.slice(start, end) +
+            (end < originalText.length ? "…" : "")
+        );
+    }
+
+    // 把搜索结果显示在页面中。
+    function displayResults(matches, terms) {
+        searchResults.replaceChildren();
+
+        if (matches.length === 0) {
+            const emptyMessage = document.createElement("p");
+            emptyMessage.className = "search-empty";
+            emptyMessage.textContent =
+                "没有找到匹配的文章，请换一个关键词试试。";
+
+            searchResults.appendChild(emptyMessage);
+            return;
+        }
+
+        // 最多显示相关程度最高的30篇。
+        matches.slice(0, 30).forEach(function (article) {
+            const resultBox = document.createElement("article");
+            resultBox.className = "search-result";
+
+            const heading = document.createElement("h3");
+            const link = document.createElement("a");
+
+            link.href = article.url;
+            link.textContent = article.title;
+
+            heading.appendChild(link);
+
+            const snippet = document.createElement("p");
+            snippet.textContent = createSnippet(article.content, terms);
+
+            resultBox.appendChild(heading);
+            resultBox.appendChild(snippet);
+            searchResults.appendChild(resultBox);
+        });
+    }
+
+    // 清空搜索后恢复原来的文章列表。
+    function clearSearch() {
+        searchResults.hidden = true;
+        searchResults.replaceChildren();
+        articlesWrapper.hidden = false;
+        searchStatus.textContent = "可以搜索文章标题和正文内容";
+    }
+
+    // 执行搜索。
+    async function runSearch() {
+        const completeQuery = normalizeText(searchInput.value);
+
+        if (!completeQuery) {
+            clearSearch();
+            return;
+        }
+
+        const terms = completeQuery.split(" ").filter(Boolean);
+
+        searchStatus.textContent = "正在搜索……";
+
+        try {
+            const searchIndex = await buildSearchIndex();
+
+            // 建立索引期间，用户可能已经清空或改变了搜索内容。
+            const latestQuery = normalizeText(searchInput.value);
+
+            if (!latestQuery) {
+                clearSearch();
+                return;
+            }
+
+            if (latestQuery !== completeQuery) {
+                runSearch();
+                return;
+            }
+
+            const matches = searchIndex
+                .map(function (article) {
+                    return {
+                        title: article.title,
+                        url: article.url,
+                        content: article.content,
+                        score: calculateScore(
+                            article,
+                            completeQuery,
+                            terms
+                        )
+                    };
+                })
+                .filter(function (article) {
+                    return article.score >= 0;
+                })
+                .sort(function (firstArticle, secondArticle) {
+                    if (secondArticle.score !== firstArticle.score) {
+                        return secondArticle.score - firstArticle.score;
+                    }
+
+                    return firstArticle.title.localeCompare(
+                        secondArticle.title,
+                        "zh-CN"
+                    );
+                });
+
+            articlesWrapper.hidden = true;
+            searchResults.hidden = false;
+
+            displayResults(matches, terms);
+
+            if (matches.length > 30) {
+                searchStatus.textContent =
+                    "找到 " +
+                    matches.length +
+                    " 篇文章，显示最相关的30篇";
+            } else {
+                searchStatus.textContent =
+                    "找到 " + matches.length + " 篇文章";
+            }
+        } catch (error) {
+            console.error("搜索失败：", error);
+
+            searchStatus.textContent =
+                "搜索加载失败，请刷新页面后再试。";
+        }
+    }
+
+    // 点击“搜索”按钮。
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        runSearch();
+    });
+
+    // 输入内容后自动搜索。
+    searchInput.addEventListener("input", function () {
+        window.clearTimeout(searchTimer);
+
+        if (!searchInput.value.trim()) {
+            clearSearch();
+            return;
+        }
+
+        searchTimer = window.setTimeout(runSearch, 250);
+    });
+});
