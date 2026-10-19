@@ -472,7 +472,7 @@ document.addEventListener("DOMContentLoaded", function () {
         searchResults.hidden = true;
         searchResults.replaceChildren();
         articlesWrapper.hidden = false;
-        searchStatus.textContent = "可以搜索文章标题和正文内容";
+        searchStatus.textContent = "";
     }
 
     // 执行搜索。

@@ -8,7 +8,7 @@
     <meta name="description" content="这是我的个人网站，用以记录我的所思所想和成长轨迹">
     
     <!-- 这里引用你刚刚修改的 CSS 文件 -->
-    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/style.css?v=20261019-2" rel="stylesheet">
 </head>
 <body>
 
@@ -179,38 +179,41 @@
         <audio controls autoplay style="width: 100%; margin-bottom: 20px; border-radius: 30px; outline: none;">
             <source src="/images/Dee.mp3" type="audio/mpeg">
         </audio>
-
+        
                 <!-- 文章搜索框 -->
-        <section class="site-search" aria-labelledby="search-heading">
-            <h2 id="search-heading">🔎 搜索文章</h2>
-
-            <form id="search-form" class="search-form" role="search">
-                <label class="visually-hidden" for="search-input">
-                    输入文章标题或正文关键词
-                </label>
-
+        <section class="site-search">
+            <form
+                id="search-form"
+                class="search-form"
+                role="search"
+                onsubmit="return false;"
+            >
                 <input
                     id="search-input"
                     type="search"
-                    placeholder="输入标题或正文关键词……"
+                    placeholder="搜索文章……"
+                    aria-label="搜索文章标题或正文"
                     autocomplete="off"
                 >
 
-                <button type="submit">搜索</button>
+                <button type="submit" aria-label="搜索" title="搜索">
+                    🔎
+                </button>
             </form>
 
-            <p id="search-status" class="search-status" aria-live="polite">
-                可以搜索文章标题和正文内容
-            </p>
+            <p
+                id="search-status"
+                class="search-status"
+                aria-live="polite"
+            ></p>
         </section>
 
-        <!-- 搜索结果会显示在这里 -->
-          <section
-              id="search-results"
-              class="search-results"
-              aria-label="搜索结果"
-              hidden
-          ></section>
+        <section
+            id="search-results"
+            class="search-results"
+            aria-label="搜索结果"
+            hidden
+        ></section>
 
         <!-- 文章列表容器 -->
         <div id="articles-wrapper">
@@ -754,7 +757,7 @@
 
         <!-- 4. 引用脚本 -->
         <!-- 把之前的脚本删掉，换成引用外部文件，这样更整洁 -->
-        <script src="script.js"></script>
+        <script src="script.js?v=20261019-2"></script>
 
     <!-- 5. 自动分页脚本 -->
     <script>
