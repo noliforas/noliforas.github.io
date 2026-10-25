@@ -111,6 +111,73 @@ summary:hover {
     background-color: #e5e5e5;
 }
 
+/* 五个分类的手绘式小插画 */
+.nav-doodle-icon {
+    width: 1.9em;
+    height: 1.9em;
+    margin-right: 0.42em;
+    overflow: visible;
+    vertical-align: -0.52em;
+    filter: drop-shadow(0.7px 1.1px 0 rgba(74, 61, 52, 0.2));
+    transform: rotate(-4deg);
+    transition: transform 0.18s ease;
+}
+
+.nav-links > details:nth-of-type(even) .nav-doodle-icon {
+    transform: rotate(4deg);
+}
+
+summary:hover .nav-doodle-icon {
+    transform: rotate(3deg) translateY(-2px) scale(1.06);
+}
+
+.nav-doodle-icon .outline {
+    stroke: #4b4039;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.nav-doodle-icon .detail {
+    fill: none;
+    stroke-width: 1.15;
+}
+
+.nav-doodle-icon .motion {
+    fill: none;
+    stroke: #78918a;
+    stroke-width: 1.55;
+    stroke-linecap: round;
+}
+
+.nav-doodle-icon .face {
+    fill: none;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+}
+
+.icon-thoughts .fill-main { fill: #79a9c7; }
+.icon-thoughts .fill-secondary { fill: #efc89d; }
+.icon-thoughts .fill-accent { fill: #f2b84b; }
+.icon-places .fill-main { fill: #dd775f; }
+.icon-places .fill-secondary { fill: #6fa99b; }
+.icon-places .fill-accent { fill: #f0cf77; }
+.icon-contents .fill-main { fill: #8eb6cc; }
+.icon-contents .fill-secondary { fill: #efd59e; }
+.icon-contents .fill-accent { fill: #dc765f; }
+.icon-life .fill-main { fill: #d88b72; }
+.icon-life .fill-secondary { fill: #e9c993; }
+.icon-life .fill-accent { fill: #f4ded0; }
+.icon-archive .fill-main { fill: #9a88ad; }
+.icon-archive .fill-secondary { fill: #e5d5b5; }
+.icon-archive .fill-accent { fill: #f4e8d0; }
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-doodle-icon {
+        transition: none;
+    }
+}
+
 /* --- 3. 中间主要内容区域 --- */
 #main-container {
     margin-left: 260px;  /* 留出左边导航的位置 */
