@@ -23,6 +23,14 @@ p {
     margin-bottom: 20px;
 }
 
+/* 年度总结等文章使用的首字下沉 */
+.dropcap {
+    float: left;
+    margin-right: 0.1em;
+    font-size: 4em;
+    line-height: 1;
+}
+
 /* 图片自适应，防止图片太大撑破手机屏幕 */
 img {
     max-width: 100%;
