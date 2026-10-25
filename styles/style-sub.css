@@ -38,3 +38,11 @@ img {
     display: block;
     margin: 20px auto;
 }
+
+/* 视频与图片使用相同的自适应规则，避免撑破文章宽度 */
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
